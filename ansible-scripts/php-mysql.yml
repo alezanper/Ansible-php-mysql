@@ -24,7 +24,7 @@
   - name: Create public IP address
     azure_rm_publicipaddress:
       resource_group: Ansible-rg
-      public_ip_allocation_method: Static
+      allocation_method: Static
       name: myPublicIP
     register: output_ip_address
     
@@ -50,7 +50,7 @@
       name: myNIC
       virtual_network: myVnet
       subnet: mySubnet
-      public_ip_name: myPublicIP
+      ip_configurations: myPublicIP
       security_group: myNetworkSecurityGroup
       
   - name: Create VM
