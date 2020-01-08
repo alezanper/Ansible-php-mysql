@@ -5,25 +5,25 @@
   
   - name: Create resource group
     azure_rm_resourcegroup:
-      name: myResourceGroup
+      name: Ansible-rg
       location: eastus
       
   - name: Create virtual network
     azure_rm_virtualnetwork:
-      resource_group: myResourceGroup
+      resource_group: Ansible-rg
       name: myVnet
       address_prefixes: "10.0.0.0/16"
       
   - name: Add subnet
     azure_rm_subnet:
-      resource_group: myResourceGroup
+      resource_group: Ansible-rg
       name: mySubnet
       address_prefix: "10.0.1.0/24"
       virtual_network: myVnet
       
   - name: Create public IP address
     azure_rm_publicipaddress:
-      resource_group: myResourceGroup
+      resource_group: Ansible-rg
       allocation_method: Static
       name: myPublicIP
     register: output_ip_address
@@ -34,7 +34,7 @@
       
   - name: Create Network Security Group that allows SSH
     azure_rm_securitygroup:
-      resource_group: myResourceGroup
+      resource_group: Ansible-rg
       name: myNetworkSecurityGroup
       rules:
         - name: SSH
@@ -46,7 +46,7 @@
           
   - name: Create virtual network interface card
     azure_rm_networkinterface:
-      resource_group: myResourceGroup
+      resource_group: Ansible-rg
       name: myNIC
       virtual_network: myVnet
       subnet: mySubnet
@@ -55,15 +55,15 @@
       
   - name: Create VM
     azure_rm_virtualmachine:
-      resource_group: myResourceGroup
+      resource_group: Ansible-rg
       name: myVM
-      vm_size: Standard_DS1_v2
-      admin_username: azureuser
+      vm_size: Standard_B1s
+      admin_username: alezanper
       ssh_password_enabled: true
       admin_password: Complexpassword2019*      
       network_interfaces: myNIC
       image:
-        offer: CentOS
-        publisher: OpenLogic
-        sku: '7.5'
+        offer: UbuntuServer
+        publisher: Canonical
+        sku: 18.04-LTS
         version: latest
