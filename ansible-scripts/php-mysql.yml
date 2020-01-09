@@ -1,31 +1,37 @@
 - name: Create Azure VM
   hosts: localhost
-  connection: local
+  vars:
+    resource_group: Ansible-rg
+    location: eastus
+    vmuser: alezanper
+    vmpassword: azureJarvis2019*
+    dns: mymachinealex2020
+
   tasks:
-  
   - name: Create resource group
     azure_rm_resourcegroup:
-      name: Ansible-rg
-      location: eastus
+      name: "{{ resource_group }}"
+      location: "{{ location }}"
       
   - name: Create virtual network
     azure_rm_virtualnetwork:
-      resource_group: Ansible-rg
+      resource_group: "{{ resource_group }}"
       name: myVnet
       address_prefixes: "10.0.0.0/16"
       
   - name: Add subnet
     azure_rm_subnet:
-      resource_group: Ansible-rg
+      resource_group: "{{ resource_group }}"
       name: mySubnet
       address_prefix: "10.0.1.0/24"
       virtual_network: myVnet
       
   - name: Create public IP address
     azure_rm_publicipaddress:
-      resource_group: Ansible-rg
+      resource_group: "{{ resource_group }}"
       allocation_method: Static
       name: myPublicIP
+      domain_name: "{{ dns }}"
     register: output_ip_address
     
   - name: Dump public IP for VM which will be created
@@ -34,7 +40,7 @@
       
   - name: Create Network Security Group that allows SSH
     azure_rm_securitygroup:
-      resource_group: Ansible-rg
+      resource_group: "{{ resource_group }}"
       name: myNetworkSecurityGroup
       rules:
         - name: SSH
@@ -46,7 +52,7 @@
 
   - name: Create virtual network interface card
     azure_rm_networkinterface:
-      resource_group: Ansible-rg
+      resource_group: "{{ resource_group }}"
       name: myNIC
       virtual_network: myVnet
       subnet: mySubnet
@@ -58,29 +64,15 @@
           
   - name: Create VM
     azure_rm_virtualmachine:
-      resource_group: Ansible-rg
+      resource_group: "{{ resource_group }}"
       name: myVM
       vm_size: Standard_B1s
-      admin_username: alezanper
+      admin_username: "{{ vmuser }}"
       ssh_password_enabled: true
-      admin_password: Complexpassword2019*      
+      admin_password: "{{ vmpassword }}"      
       network_interfaces: myNIC
       image:
         offer: UbuntuServer
         publisher: Canonical
         sku: 18.04-LTS
         version: latest
-
-  - name: Create (or update) MySQL Server
-    azure_rm_mysqlserver:
-      resource_group: Ansible-rg
-      name: testserver
-      sku:
-        name: MYSQLB50
-        tier: Basic
-        capacity: 100
-      location: eastus
-      storage_mb: 1024
-      enforce_ssl: True
-      admin_username: newuser
-      admin_password: passwordComplex2019*

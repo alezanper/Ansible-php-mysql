@@ -1,0 +1,17 @@
+- name: Installing packages 
+  connection: local
+  hosts: [webserver]
+  become: yes
+  become_method: sudo
+  remote_user: alezanper
+
+  tasks: 
+    - name: 1. install Apache
+      apt: name=apache2 update_cache=yes state=latest
+    - name: update
+      apt: update_cache=yes
+    - name: install apache2
+      apt: name=apache2 state=present
+    - name: restart apache2
+      service: name=apache2 state=restarted
+    - debug: msg="apache has been installed"
