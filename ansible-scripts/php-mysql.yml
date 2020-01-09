@@ -70,3 +70,17 @@
         publisher: Canonical
         sku: 18.04-LTS
         version: latest
+
+  - name: Create (or update) MySQL Server
+    azure_rm_mysqlserver:
+      resource_group: TestGroup
+      name: testserver
+      sku:
+        name: MYSQLB50
+        tier: Basic
+        capacity: 100
+      location: eastus
+      storage_mb: 1024
+      enforce_ssl: True
+      admin_username: newuser
+      admin_password: passwordComplex2019*
