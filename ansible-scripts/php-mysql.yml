@@ -73,7 +73,7 @@
 
   - name: Create (or update) MySQL Server
     azure_rm_mysqlserver:
-      resource_group: TestGroup
+      resource_group: Ansible-rg
       name: testserver
       sku:
         name: MYSQLB50
