@@ -7,5 +7,5 @@
 
   tasks: 
     - name: 1. install Apache
-      apt: python-apt, apache2, php7.2, libapache2-mod-php7.2, python-mysqldb, php-mysql    
+      apt: name=apache2, php7.2, libapache2-mod-php7.2, python-mysqldb, php-mysql state=present
     - debug: msg="installed"
