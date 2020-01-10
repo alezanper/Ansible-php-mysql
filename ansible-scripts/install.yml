@@ -6,6 +6,21 @@
   remote_user: alezanper
 
   tasks: 
-    - name: install Apache
-      apt: name=apache2, php7.2, libapache2-mod-php7.2, python-mysqldb, php-mysql state=present
-    - debug: msg="installed"
+    - name: install lamp stack
+      become: yes
+      become_user: root
+      apt:
+        pkg:
+          - apache2
+          - php7.0
+          - php7.0-mysql
+        state: present
+        update_cache: yes
+
+    - name: start apache service
+      become: yes
+      become_user: root
+      service:
+        name: apache2
+        state: started
+        enabled: yes
