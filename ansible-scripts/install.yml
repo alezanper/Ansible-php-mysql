@@ -5,6 +5,10 @@
   become_method: sudo
   
   tasks: 
+  - name: Write the new ec2 instance host key to known hosts
+    connection: local
+    shell: "ssh-keyscan -H myappphpserver2.eastus.cloudapp.azure.com >> ~/.ssh/known_hosts"
+
   - name: install lamp stack
     apt:
       name: apache2, php7.2, libapache2-mod-php7.2, python-mysqldb, php-mysql
