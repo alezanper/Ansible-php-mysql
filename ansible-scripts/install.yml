@@ -1,11 +1,9 @@
 - name: Installing packages 
   hosts: [webserver]
-  connection: local
   remote_user: alezanper
   become: yes
   become_method: sudo
-
-
+  
   tasks: 
   - name: install lamp stack
     apt:

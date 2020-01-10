@@ -4,7 +4,8 @@
     resource_group: #{resourceGroupName}#
     location: #{location}#
     vmuser: #{vmuser}#
-    dns: #{dns}#
+    dnsapp: #{dnsapp}#
+    dnsadd: #{dnsadd}#
     vmsize: #{vmsize}#
 
   tasks:
@@ -45,12 +46,12 @@
           priority: 1002
           direction: Inbound
       
-  - name: Create public IP address
+  - name: Create public IP address for VM App
     azure_rm_publicipaddress:
       resource_group: "{{ resource_group }}"
       allocation_method: Static
-      name: myPublicIP
-      domain_name: "{{ dns }}"
+      name: PublicIpApp
+      domain_name: "{{ dnsapp }}"
     register: output_ip_address
     
   - name: Dump public IP for VM which will be created
@@ -65,7 +66,7 @@
       subnet: mySubnet
       ip_configurations:
         - name: ipname
-          public_ip_address_name: myPublicIP
+          public_ip_address_name: PublicIpApp
           primary: True
       security_group: myNetworkSecurityGroup
           
@@ -91,8 +92,8 @@
     azure_rm_publicipaddress:
       resource_group: "{{ resource_group }}"
       allocation_method: Static
-      name: myPublicIP2
-      domain_name: secondmachinejusttesting
+      name: PublicIpApp2
+      domain_name: "{{ dnsadd }}"
     register: output_ip_address2
     
   - name: Dump public IP2 for VM which will be created
@@ -107,7 +108,7 @@
       subnet: mySubnet
       ip_configurations:
         - name: ipname2
-          public_ip_address_name: myPublicIP2
+          public_ip_address_name: PublicIpApp2
           primary: True
       security_group: myNetworkSecurityGroup
           
