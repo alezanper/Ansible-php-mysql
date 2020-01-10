@@ -4,8 +4,7 @@
     resource_group: Ansible-rg
     location: eastus
     vmuser: alezanper
-    vmpassword: azureJarvis2019*
-    dns: mymachinealex2020
+    dns: myappphpserver
 
   tasks:
   - name: Create resource group
@@ -68,8 +67,10 @@
       name: myVM
       vm_size: Standard_B1s
       admin_username: "{{ vmuser }}"
-      ssh_password_enabled: true
-      admin_password: "{{ vmpassword }}"      
+      ssh_password_enabled: false
+      ssh_public_keys:
+        - path: "/home/{{ vmuser }}/.ssh/authorized_keys"
+          key_data: "{{lookup('file', '~/.ssh/id_rsa.pub') }}"
       network_interfaces: myNIC
       image:
         offer: UbuntuServer
