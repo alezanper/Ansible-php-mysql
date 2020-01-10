@@ -1,5 +1,4 @@
 - name: Installing packages 
-  connection: local
   hosts: [webserver]
   become: yes
   become_method: sudo
