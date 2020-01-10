@@ -8,8 +8,8 @@
       apt:
         pkg:
           - apache2
-          - php7.0
-          - php7.0-mysql
+          - php7.3
+          - php7.3-mysql
         state: present
         update_cache: yes
 
