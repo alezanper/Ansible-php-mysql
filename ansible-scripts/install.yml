@@ -15,5 +15,5 @@
     - name: start apache service
       service:
         name: apache2
-        state: latest
+        state: started
         enabled: yes
