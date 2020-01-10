@@ -2,9 +2,10 @@
   hosts: localhost
   vars:
     resource_group: #{resourceGroupName}#
-    location: eastus
-    vmuser: alezanper
-    dns: myappphpserver
+    location: #{location}#
+    vmuser: #{vmuser}#
+    dns: #{dns}#
+    vmsize: #{vmsize}#
 
   tasks:
   - name: Create resource group
@@ -72,7 +73,7 @@
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
       name: myVM
-      vm_size: Standard_B1s
+      vm_size: "{{ vmsize }}"
       admin_username: "{{ vmuser }}"
       ssh_password_enabled: false
       ssh_public_keys:
