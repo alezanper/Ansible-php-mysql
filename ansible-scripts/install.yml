@@ -7,11 +7,5 @@
 
   tasks: 
     - name: 1. install Apache
-      apt: name=apache2 update_cache=yes state=latest
-    - name: update
-      apt: update_cache=yes
-    - name: install apache2
-      apt: name=apache2 state=present
-    - name: restart apache2
-      service: name=apache2 state=restarted
-    - debug: msg="apache has been installed"
+      apt: python-apt, apache2, php7.2, libapache2-mod-php7.2, python-mysqldb, php-mysql    
+    - debug: msg="installed"
