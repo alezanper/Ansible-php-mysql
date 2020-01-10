@@ -121,7 +121,7 @@
       ssh_public_keys:
         - path: "/home/{{ vmuser }}/.ssh/authorized_keys"
           key_data: "{{lookup('file', '~/.ssh/id_rsa.pub') }}"
-      network_interfaces: myNIC
+      network_interfaces: myNIC2
       image:
         offer: UbuntuServer
         publisher: Canonical
