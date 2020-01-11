@@ -7,6 +7,12 @@
   tasks: 
 
   # do an "apt-get update", to ensure latest package lists
+  - name: Ensure python-apt is installed
+    command: >
+      apt-get install python-apt -y -q
+      creates=/usr/share/doc/python-apt
+    sudo: yes
+
   - name: apt-get update
     apt:
       update_cache: yes
