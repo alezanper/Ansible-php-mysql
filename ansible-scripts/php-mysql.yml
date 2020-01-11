@@ -7,6 +7,7 @@
     dnsapp: #{dnsapp}#
     dnsadd: #{dnsadd}#
     vmsize: #{vmsize}#
+
     mysqlserver_name: #{mysqlservername}#
     sqluser: #{sqluser}#
     sqlpassword: #{sqlpassword}#
@@ -143,7 +144,7 @@
         name: B_Gen5_1
         tier: Basic
       location: "{{ location }}"
-      version: 5.6
+      version: "5.6"
       enforce_ssl: True
       admin_username: "{{ sqluser }}"
       admin_password: "{{ sqlpassword }}"
