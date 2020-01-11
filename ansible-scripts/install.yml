@@ -3,14 +3,13 @@
   remote_user: alezanper
   become: yes
   become_method: sudo
-  
-  pre_tasks:
-  - name: Install python2 for Ansible
-    raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-apt)"
-    register: output
-    changed_when: output.stdout != ""
 
   tasks: 
+
+  - name: This command will change the working directory to somedir/.
+    shell:
+      cmd: apt-get install python-apt
+
   - name: install lamp stack
     apt:
       name: apache2, php7.2, libapache2-mod-php7.2, php-mysql
