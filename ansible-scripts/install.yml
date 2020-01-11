@@ -4,27 +4,23 @@
   become: yes
   become_method: sudo
   
-  tasks: 
+  pre_tasks:
+  - name: Install python2 for Ansible
+    raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
+    register: output
+    changed_when: output.stdout != ""
 
-  # do an "apt-get update", to ensure latest package lists
-  - name: Ensure python-apt is installed
-    shell: 
-      apt-get install python-apt -y -q
-      creates=/usr/share/doc/python-apt
-    warm: false
+  tasks: 
 
   - name: apt-get update
     apt:
       update_cache: yes
       upgrade: safe
-    warm: false
-
 
   - name: install lamp stack
     apt:
       name: apache2, php7.2, libapache2-mod-php7.2, php-mysql
       state: latest
-    warm: false
 
   - name: start apache service
     service:
