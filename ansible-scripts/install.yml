@@ -9,6 +9,8 @@
   - name: This command will change the working directory to somedir/.
     shell:
       cmd: apt-get install python-apt
+    args:
+      warn: false
 
   - name: install lamp stack
     apt:
