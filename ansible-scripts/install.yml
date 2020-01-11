@@ -12,11 +12,6 @@
       update-cache: yes
       changed_when: 0
 
-  # Upgrade all the Ubuntu servers.
- # do the actual apt-get dist-upgrade
-  - name: apt-get dist-upgrade
-    apt: upgrade=dist # upgrade all packages to latest version
-
   - name: install lamp stack
     apt:
       name: python-apt, apache2, php7.2, libapache2-mod-php7.2, python-mysqldb, php-mysql
