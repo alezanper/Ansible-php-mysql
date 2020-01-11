@@ -5,9 +5,18 @@
   become_method: sudo
   
   tasks: 
-  - name: Write the new ec2 instance host key to known hosts
-    connection: local
-    shell: "ssh-keyscan -H myappphpserver2.eastus.cloudapp.azure.com >> ~/.ssh/known_hosts"
+
+  # do an "apt-get update", to ensure latest package lists
+  - name: apt-get update
+    apt:
+      update-cache: yes
+      changed_when: 0
+
+  # Upgrade all the Ubuntu servers.
+ # do the actual apt-get dist-upgrade
+  - name: apt-get dist-upgrade
+    apt:
+      upgrade: dist # upgrade all packages to latest version
 
   - name: install lamp stack
     apt:
