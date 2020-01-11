@@ -11,12 +11,6 @@
     changed_when: output.stdout != ""
 
   tasks: 
-
-  - name: apt-get update
-    apt:
-      update_cache: yes
-      upgrade: safe
-
   - name: install lamp stack
     apt:
       name: apache2, php7.2, libapache2-mod-php7.2, php-mysql
