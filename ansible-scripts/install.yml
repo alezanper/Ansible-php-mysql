@@ -15,8 +15,7 @@
   # Upgrade all the Ubuntu servers.
  # do the actual apt-get dist-upgrade
   - name: apt-get dist-upgrade
-    apt:
-      upgrade: dist # upgrade all packages to latest version
+    apt: upgrade=dist # upgrade all packages to latest version
 
   - name: install lamp stack
     apt:
