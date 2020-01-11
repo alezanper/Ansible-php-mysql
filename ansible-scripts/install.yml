@@ -14,7 +14,7 @@
 
   - name: install lamp stack
     apt:
-      name: python-apt, apache2, php7.2, libapache2-mod-php7.2, python-mysqldb, php-mysql
+      name: apache2, php7.2, libapache2-mod-php7.2, php-mysql
       state: latest
 
   - name: start apache service
