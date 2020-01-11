@@ -35,6 +35,7 @@
 
     - name: Open firewall to access MySQL Server from outside
       azure_rm_resource:
+        api_version: '2017-12-01'
         resource_group: "{{ resource_group }}"
         provider: dbformysql
         resource_type: servers
