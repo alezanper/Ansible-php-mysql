@@ -23,8 +23,8 @@
         location: "{{ location }}"
         version: "5.6"
         enforce_ssl: False
-        admin_username: "{{ admin_username }}"
-        admin_password: "{{ admin_password }}"
+        admin_username: "{{ sqluser }}"
+        admin_password: "{{ sqlpassword }}"
         storage_mb: 51200
 
     - name: Create instance of MySQL Database
