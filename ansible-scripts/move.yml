@@ -16,3 +16,8 @@
         - insert.php
         - style.css
         - update.php
+
+    - name:  delete file in a remote server
+      file:
+        path: /var/www/html/index.html
+        state: absent
