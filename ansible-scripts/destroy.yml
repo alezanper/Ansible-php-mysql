@@ -9,4 +9,3 @@
       name: "{{ resource_group }}"
       force_delete_nonempty: yes
       state: absent
-
