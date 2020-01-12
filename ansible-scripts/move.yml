@@ -7,5 +7,12 @@
   tasks: 
     - name: copy file to remote host
       copy:
-        src: /home/alezanper/*.php
+        src: /home/alezanper/{{ item }}
         dest: /var/www/html
+      with_items:
+        - index.php
+        - db_connection.php
+        - delete.php
+        - insert.php
+        - style.css
+        - update.php
