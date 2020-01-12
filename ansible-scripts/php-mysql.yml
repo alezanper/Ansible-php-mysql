@@ -8,11 +8,6 @@
     dnsadd: #{dnsadd}#
     vmsize: #{vmsize}#
 
-    mysqlserver_name: #{mysqlservername}#
-    sqluser: #{sqluser}#
-    sqlpassword: #{sqlpassword}#
-    mysqldb_name: #{mysqldbname}#
-
   tasks:
   - name: Create resource group
     azure_rm_resourcegroup:

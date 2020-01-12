@@ -1,11 +1,11 @@
 - hosts: localhost
   vars:
-    resource_group: myResourceGroup
-    location: eastus 
-    mysqlserver_name: mysqlserveransible
-    mysqldb_name: mysqldbansible
-    admin_username: mysqladmin
-    admin_password: Complexpassword2019* 
+    resource_group: #{resourceGroupName}#
+    location: #{location}#
+    mysqlserver_name: #{mysqlservername}#
+    sqluser: #{sqluser}#
+    sqlpassword: #{sqlpassword}#
+    mysqldb_name: #{mysqldbname}#
     
   tasks:
     - name: Create a resource group
@@ -22,7 +22,7 @@
           tier: Basic
         location: "{{ location }}"
         version: "5.6"
-        enforce_ssl: True
+        enforce_ssl: False
         admin_username: "{{ admin_username }}"
         admin_password: "{{ admin_password }}"
         storage_mb: 51200
