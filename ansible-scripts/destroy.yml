@@ -3,9 +3,8 @@
   vars:
     resource_group: #{resourceGroupName}#
 
-  tasks:
-  - name: Delete
+  taks:
+  - name: Delete a resource group
     azure_rm_resourcegroup:
       name: "{{ resource_group }}"
-      force_delete_nonempty: yes
       state: absent
