@@ -3,7 +3,7 @@
   vars:
     resource_group: #{resourceGroupName}#
 
-  taks:
+  tasks:
   - name: Delete a resource group
     azure_rm_resourcegroup:
       name: "{{ resource_group }}"
