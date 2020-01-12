@@ -1,0 +1,11 @@
+- name: Moving files to host
+  hosts: [webserver]
+  remote_user: alezanper
+  become: yes
+  become_method: sudo
+
+  tasks: 
+    - name: copy file to remote host
+      copy:
+        src: /home/alezanper/index.php
+        dest: /var/www/html
